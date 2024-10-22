@@ -1,0 +1,346 @@
+\documentclass[12pt,a4paper,titlepage,openany]{report}
+\usepackage{zakljucna_FAMNIT_1_stopnja_MA_MEF_EN_2016}
+
+% Head of document:
+
+\fancyhf{}
+\lhead[]{{\fontsize{9.3}{12}\selectfont
+Priimek I. Title of final project paper (in English).\\
+\noindent Univerza na Primorskem, Fakulteta za matematiko, naravoslovje in informacijske tehnologije, leto}}
+\chead[]{\fancyplain{}{}}
+\rhead[]{\fancyplain{\thepage}
+{\thepage}}
+\cfoot[]{\fancyplain{}{}}
+\lfoot[]{\fancyplain{}{}}
+\rfoot[]{\fancyplain{}{}}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%% BEGINNING OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Title page %%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\pagenumbering{Roman}
+\pagestyle{empty}
+\begin{center}
+\noindent \large UNIVERZA NA PRIMORSKEM\\
+\large FAKULTETA ZA MATEMATIKO, NARAVOSLOVJE IN\\
+INFORMACIJSKE TEHNOLOGIJE
+
+
+\normalsize
+\vspace{5.5cm}
+Zaklju\v cna naloga\\
+(Final project paper)\\
+\textbf{\large Naslov zaklju\v cne naloge}\\
+\normalsize
+(Title of final project paper in English)\\
+\end{center}
+
+\begin{flushleft}
+\vspace{5cm}
+\noindent Ime in priimek: Marko Jankovic
+% add your first name and last name in the line above
+\\
+\noindent \v Studijski program: (name of the study program, in Slovene)
+% add your study program in the line above
+\\
+\noindent Mentor: (with all titles, in Slovene)
+% add the academic title, first name, and last name of your mentor in the line above
+\\
+\noindent Somentor: (with all titles, in Slovene)
+% if you have a co-mentor, add his/her academic title, first name, and last name in the line above
+% if you do not have a co-mentor, delete the line above and the line below
+\\
+\end{flushleft}
+
+\vspace{4cm}
+\begin{center}
+\large \textbf{Koper, mesec leto}
+% add the month and year of submission of your final project paper
+\end{center}
+\newpage
+
+\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Key words documentation (Slovene and English) %%%%%%%%%%%
+
+\section*{Klju\v cna dokumentacijska informacija}
+
+\medskip
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\vspace{0.2cm}
+\noindent
+Ime in PRIIMEK:\vspace{0.5cm}\\
+Naslov zaklju\v cne naloge:\vspace{0.5cm}\\
+Kraj:\vspace{0.5cm}\\
+Leto:\vspace{0.5cm}\\
+\v Stevilo listov: \hspace{2cm} \v Stevilo slik: \hspace{2.6cm} \v Stevilo tabel:\hspace{2cm}\vspace{0.5cm}\\
+\v Stevilo prilog: \hspace{1.9cm} \v Stevilo strani prilog: \hspace{1cm} \v Stevilo referenc:\vspace{0.5cm}\\
+Mentor:\vspace{0.5cm}\\
+Somentor:\vspace{0.5cm}\\
+Klju\v cne besede:\vspace{0.5cm}\\
+Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+{\bf Izvle\v cek:}\\
+Izvle\v cek predstavlja kratek, a jedrnat prikaz vsebine naloge. V najve\v c 250 besedah nakažemo problem, metode, rezultate, klju\v cne ugotovitve in njihov pomen.
+\vspace{0.2cm}
+}}
+\end{center}
+
+\newpage
+
+\section*{Key words documentation}
+
+\medskip
+
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\vspace{0.2cm}
+\noindent
+Name and SURNAME:\vspace{0.5cm}\\
+Title of final project paper:\vspace{0.5cm}\\
+Place:\vspace{0.5cm}\\
+Year:\vspace{0.5cm}\\
+Number of pages:\hspace{1.6cm} Number of figures:\hspace{2.2cm} Number of tables:\vspace{0.5cm}\\
+Number of appendices:\hspace{0.6cm} Number of appendix pages:\hspace{0.8cm}Number of references:\vspace{0.5cm}\\
+Mentor: title~First Name~Last Name, PhD\vspace{0.5cm}\\
+% for : "title" write one of the following:
+% Assist.~Prof.~(if the title is "docent"),
+% Assoc.~Prof.~(if the title is "izredni profesor"),
+% Prof.~(if the title is "profesor")
+Co-Mentor:\vspace{0.5cm}\\
+Keywords:\vspace{0.5cm}\\
+Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
+{\bf Abstract:}
+\vspace{0.2cm}
+}}
+\end{center}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{Acknowledgement}
+
+Here we thank all involved with our final project paper, that is, persons or institutions that helped us in our work and/or made it possible.
+We can also thank the mentor and the co-mentor (if there is one).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Table of contents, list of figures, etc. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
+% if there are no tables in your final project paper, delete the following three lines
+\newpage
+\listoftables
+\addtocontents{lot}{\protect\thispagestyle{fancy}}
+% if there are no figures in your final project paper, delete the following three lines
+\newpage
+\listoffigures
+\addtocontents{lof}{\protect\thispagestyle{fancy}}
+\newpage
+% Since the appendices are not numbered, we also do not want to show the dots to their (non-existing) page numbers.
+\renewcommand{\cftdot}{}
+\listofappendices
+\thispagestyle{fancy}
+\newpage
+
+\chapter*{List of Abbreviations}
+\thispagestyle{fancyplain}
+\begin{longtable}{@{}p{1cm}@{}p{\dimexpr\textwidth-1cm\relax}@{}}
+\nomenclature{{\it i.e.}}{that is}
+\nomenclature{{\it e.g.}}{for example}
+\end{longtable}
+\newpage
+
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapters: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Hint: You might find it convenient to keep the contents of separate chapters in separate files, each in their own
+% .tex file. They all have to be stored in the same folder as the main file. Each chapter is included with the \include command.
+% Example: we can insert FirstChapter.tex and SecondChapter.tex as follows:
+% \include{FirstChapter}
+% \include{SecondChapter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 1: Introduction %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Introduction}
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+
+\section{Importance of detecting EEG signals}
+
+\section{Purpose of the thesis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 2: EEG and ICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{EEG and ICA}
+\thispagestyle{fancy}
+
+We add some connecting text.
+
+\section{EEG signals}
+
+We add some connecting text.
+
+\section{ICA label}
+
+ICA was first created to deal with the cocktail party problem, upon which you attempt to isolate a pertinent conversation from the noise of other conversations at a cocktail party (Hyvarinen and Oja 2000). 
+Applying the ICA to the EEG data involves the decomposition of EEG time series data into a set of components. 
+More specifically, EEG data are transformed to a collection of simultaneously recorded outputs of spatial filters applied to the whole multi-channel data, instead of a collection of simultaneously recorded single-channel data records. 
+Thus, ICA is also a source separation technique that attempts to identify independent sources of variance in the EEG data (Anemuller et  al. 2003).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 3: Methodology %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Methodology}
+\thispagestyle{fancy}
+
+\section{Dataset description}
+
+This dataset examines the effects of caffeine on brain stimulation and consists of EEG recordings of two categories of participants: the first group which had an intake of regular coffee, and the other which had decaffeinated coffee. 
+The primary difference between the two types of participants was the drinks and hence caffeine content. 
+Participants from both groups were given the chance to add different amounts of sugar to their drinks, which causes an issue with the data but this is not the concern of this analysis.
+
+In relation to our project, this dataset will be used for dealing with artifact identification and detection in EEG data, and while the original research was focused on caffeine stimulation of the brain, we are interested only in artifacts present in EEG signals, such as blinking, movements of muscles, and other activities nearby that interfere with the EEG readings.
+
+
+\section{Data preprocessing}
+
+While EEG recordings tend to contain noise and artifacts such as eye blinking or movement, EEG signals measured from the scalp do not necessarily accurately represent signals originating from the brain. 
+Therefore, it is very essential to apply preprocessing and denoising to the recorded EEG data. 
+Generally, preprocessing steps include the transformations or reorganizations of the recorded EEG data by removing bad or artifact-ridden data without changing clean data (transformation) and segmenting continuous raw signals without change of the data (reorganizations).
+
+Our preprocessing of the data comes in 6 steps:
+
+\begin{enumerate}
+    \item Filter 1-50Hz: 
+    
+    We apply a bandpass filter to the EEG data, keeping frequencies between 1 Hz (lower limit) and 50 Hz (upper limit).
+
+    1 Hz: This high-pass filter removes very slow components (below 1 Hz) that may correspond to artifacts like slow drifts in signals.
+
+    50 Hz: This low-pass filter removes fast components above 50 Hz, such as muscle artifacts and electrical noise.
+
+    \item Cutaway first 1000 samples
+
+    We remove the first 1000 samples, which might correspond to initial noise or artifacts at the start of the recording. 
+
+    \item Re-reference to average
+
+    This step re-references the EEG signals by subtracting the average of all electrodes from each electrode. This is commonly done to minimize noise and make the signals more comparable across channels.
+
+    The assumption of average reference is: the sum of the electric field values recorded at all scalp electrodes (sufficiently dense and evenly distributed) is always 0, and the current passing through the base of the skull to the neck and body is negligible. 
+    Since our EEG recording system has enough even channels using average reference makes sense as the overall activity averages to 0.
+
+    \item Resample from 600 to 300 Hz
+
+    We resample the data from a sampling rate of 600 Hz to 300 Hz. Resampling reduces the data size while retaining enough frequency resolution for EEG analysis.
+
+    \item Check dataset integrity
+
+    This function checks the integrity of the EEG dataset after the preprocessing steps to ensure there are no inconsistencies or issues.
+
+    \item Run ICA
+
+    In this step, Independent Component Analysis (ICA) is applied to separate independent sources (e.g., eye blinks, muscle noise, and brain activity) in the EEG signals. This helps in identifying and later removing artifacts, which is a common step after the basic preprocessing (filtering, re-referencing, etc.) has been completed.
+
+\end{enumerate}
+
+\section{Model architecture}
+
+\section{Training and validation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 4: Experiments and Results %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Experiments and Results}
+\thispagestyle{fancy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 5: Discussion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Discussion}
+\thispagestyle{fancy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 6: Conclusion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Conclusion}
+\thispagestyle{fancy}
+
+In few sentences we briefly summarize the content of the project paper.
+This is also the place where we can add some further references for the interested reader.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Summary of the final project paper in Slovene  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Povzetek naloge v slovenskem jeziku}
+\thispagestyle{fancy}
+
+This chapter contains a longer summary of the final project paper in Slovene,
+in total length between $4.000$ and $10.000$ characters (spaces included).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \begin{thebibliography}{99}
+\thispagestyle{fancy}
+
+\bibitem{Blum}
+  \articleInJournalManyAuthors
+    {A.~Blum, G.~Konjevod}{R.~Ravi}
+    {Semidefinite relaxations for minimum bandwidth and other vertex-ordering problems}
+   {Theor.~Comp.~Sci.}{235}
+   {2000}{25--42}
+
+% There has to be an empty line here so that the page numbers of citations are properly displayed.
+\end{thebibliography}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancyplain}
+\vspace*{\fill}
+     \begin{center}
+          \bf{\Huge{Appendices}}
+     \end{center}
+\vspace*{\fill}
+\thispagestyle{fancy}
+
+\appendix
+\thispagestyle{empty}
+\pagenumbering{gobble}
+
+\addtocontents{toc}{\setcounter{tocdepth}{-1}}
+\appendices{A Title of First Appendix}
+\chapter{Title of First Appendix}
+\thispagestyle{empty}
+Here we add the first appendix.
+
+% Be careful:
+% the command
+% \thispagestyle{empty}
+% has to be present on every page of each appendix (so that the document header is not displayed)
+
+\appendices{B Title of Second Appendix}
+\chapter{Title of Second Appendix}
+\thispagestyle{empty}
+Here we add the second appendix.
+
+% Be careful:
+% the command
+% \thispagestyle{empty}
+% has to be present on every page of each appendix (so that the document header is not displayed)
+
+\addtocontents{toc}{\setcounter{tocdepth}{2}}
+\end{document}
