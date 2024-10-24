@@ -144,7 +144,7 @@ We can also thank the mentor and the co-mentor (if there is one).
 \newpage
 % Since the appendices are not numbered, we also do not want to show the dots to their (non-existing) page numbers.
 \renewcommand{\cftdot}{}
-\listofappendices
+\listofappendices{}
 \thispagestyle{fancy}
 \newpage
 
@@ -222,7 +222,7 @@ Generally, preprocessing steps include the transformations or reorganizations of
 Our preprocessing of the data comes in 6 steps:
 
 \begin{enumerate}
-    \item Filter 1-50Hz: 
+    \item Filter 1 to 50Hz:
     
     We apply a bandpass filter to the EEG data, keeping frequencies between 1 Hz (lower limit) and 50 Hz (upper limit).
 
