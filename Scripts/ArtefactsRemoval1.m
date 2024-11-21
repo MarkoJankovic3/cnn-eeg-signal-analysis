@@ -1,6 +1,6 @@
 clear all;
 
-load('/home/support-5/Documents/Diplomski/diploma-thesis/scripts/EEG artifacts/EEG_RecordSession_311_artefakti2019.07.24_11.51.14_.mat')
+load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_311/EEG_RecordSession_311_oddball_po_kofeinu2019.07.24_13.02.42.hdf5_.mat')
 
 XTrain = EEG.data;
 TTrain = categorical(EEG.artefacts);
@@ -64,9 +64,16 @@ lgraph = connectLayers(lgraph,outputName,"fc");
 
 %% Training options
 
+validation_data = load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_318/EEG_RecordSession_318_oddball_po_kofeinu2019.07.26_10.49.10.hdf5_.mat')
+
+XTest = validation_data.EEG.data;
+TTest = categorical(validation_data.EEG.artefacts);
+
 options = trainingOptions("adam", ...
     MaxEpochs=60, ...
     miniBatchSize=1, ...
+    ValidationData={XTest, TTest}, ...
+    ValidationFrequency=5, ...
     Plots="training-progress", ...
     Verbose=1);
 
@@ -78,7 +85,7 @@ net = trainNetwork(XTrain,TTrain,lgraph,options);
 
 %s = load("HumanActivityTest.mat");
 
-s = load("/home/support-5/Documents/Diplomski/diploma-thesis/scripts/EEG artifacts/EEG_RecordSession_311_artefakti2019.07.24_11.51.14_.mat");
+s = load("/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_311/EEG_RecordSession_311_oddball_pred_kofeinom2019.07.24_12.13.23.hdf5_.mat");
 
 XTest = s.EEG.data; %= s.XTest;
 TTest = categorical(s.EEG.artefacts) ; %= s.YTest;

@@ -1,10 +1,9 @@
 clc;clear all;close all;
 
-
 eeglab;
 %% 1.Import .hdf5
-filename='RecordSession_311_oddball_pred_kofeinom2019.07.24_12.08.46';
-filepath= '/home/support-5/Documents/Diplomski/Data/raw-caffeine_311/';
+filename='RecordSession_318_oddball_pred_kofeinom2019.07.26_10.04.35.hdf5';
+filepath= '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/Raw data/raw-caffeine_318';
 
 %filename='RecordSession_311_ECO_po_kofeinu2019.07.24_12.54.43.hdf5';
 %filepath= '/home/peter/Projects/EEG/raw-caffeine';
@@ -12,7 +11,7 @@ filepath= '/home/support-5/Documents/Diplomski/Data/raw-caffeine_311/';
 EEG = pop_loadhdf5('filename',filename,'filepath',filepath, 'rejectchans', [], 'ref_ch', []);
 
 %% 2. 	Add channel location data
-EEG=pop_chanedit(EEG, 'load',{'/home/support-5/Documents/Diplomski/diploma-thesis/scripts/EEG artifacts/Locs32_30_05_2017 (2).locs' 'filetype' 'autodetect'});
+EEG=pop_chanedit(EEG, 'load',{'/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Scripts/EEG artifacts/Locs32_30_05_2017 (2).locs' 'filetype' 'autodetect'});
 
 %% processing
 % filter 1-45 hz
