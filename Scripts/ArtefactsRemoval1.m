@@ -1,14 +1,28 @@
 clear all;
 
-load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_311/EEG_RecordSession_311_oddball_po_kofeinu2019.07.24_13.02.42.hdf5_.mat')
+raw_caffeine_318 = '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_318';
+raw_caffeine_366 = '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_366';
 
-XTrain = EEG.data;
-TTrain = categorical(EEG.artefacts);
+% Get a combined list of .mat files from both folders
+matFiles = [dir(fullfile(raw_caffeine_318, '*.mat')); dir(fullfile(raw_caffeine_366, '*.mat'))];
+
+% Initialize cell arrays
+XTrain = {};
+TTrain = {};
+
+% Loop through all files
+for i = 1:length(matFiles)
+    filePath = fullfile(matFiles(i).folder, matFiles(i).name);
+    loadedData = load(filePath);
+    EEG = loadedData.EEG;
+    XTrain{end+1} = EEG.data;
+    TTrain{end+1} = categorical(EEG.artefacts);
+end
 
 %% NN model
-numFeatures = size(XTrain,1)
+numFeatures = size(XTrain{1},1)
 
-classes = categories(TTrain);
+classes = categories(TTrain{1});
 numClasses = numel(classes)
 
 numFilters = 64;
@@ -64,16 +78,9 @@ lgraph = connectLayers(lgraph,outputName,"fc");
 
 %% Training options
 
-validation_data = load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_318/EEG_RecordSession_318_oddball_po_kofeinu2019.07.26_10.49.10.hdf5_.mat')
-
-XTest = validation_data.EEG.data;
-TTest = categorical(validation_data.EEG.artefacts);
-
 options = trainingOptions("adam", ...
     MaxEpochs=60, ...
     miniBatchSize=1, ...
-    ValidationData={XTest, TTest}, ...
-    ValidationFrequency=5, ...
     Plots="training-progress", ...
     Verbose=1);
 
