@@ -88,7 +88,7 @@ e2=find(dp<0);
 
 %write the event list to EEG structure
 nev=length(e1);
-nev0=length(EEG.event)
+nev0=length(EEG.event);
 for iev=1:nev
     EEG.event(nev0+2*iev-1).type='rejStart';
     EEG.event(nev0+2*iev-1).position=1;

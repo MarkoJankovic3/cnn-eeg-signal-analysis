@@ -110,3 +110,6 @@ title("Test Sequence Predictions")
 
 figure
 confusionchart(TTest,YPred)
+
+accuracy = sum(YPred == TTest) / numel(TTest) * 100;
+fprintf('Accuracy = %.2f%%\n', accuracy);

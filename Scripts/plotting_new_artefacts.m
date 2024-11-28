@@ -2,8 +2,8 @@ clc;clear all;close all;
 
 eeglab;
 %% 1.Import .hdf5
-filename='RecordSession_318_oddball_pred_kofeinom2019.07.26_10.04.35.hdf5';
-filepath= '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/Raw data/raw-caffeine_318';
+filename='RecordSession_311_oddball_pred_kofeinom2019.07.24_12.13.23.hdf5';
+filepath= '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/Raw data/raw-caffeine_311';
 
 %filename='RecordSession_311_ECO_po_kofeinu2019.07.24_12.54.43.hdf5';
 %filepath= '/home/peter/Projects/EEG/raw-caffeine';
@@ -29,15 +29,15 @@ EEG = eeg_checkset( EEG );
 
 %% detect start % stop of reject regions as events
 load('Predicted.mat')
-r=double(string(YPred))
+r=double(string(YPred));
 rp=[0, r(1:end-1)];
 dp=r-rp;
 e1=find(dp>0);
 e2=find(dp<0);
 
 %write the event list to EEG structure
-nev=length(e1);
-nev0=length(EEG.event)
+nev=length(e2);
+nev0=length(EEG.event);
 for iev=1:nev
     EEG.event(nev0+2*iev-1).type='rejStart-new';
     EEG.event(nev0+2*iev-1).position=1;
@@ -59,4 +59,4 @@ eeglab redraw;
 
 %% save the data
 EEG.artefacts=r;
-save(['New_Artifacts_EEG_' filename '_.mat'],"EEG");
+save(['../Datasets/Predicted EEG data/raw-caffeine_311/Predicted_' filename '_.mat'],"EEG");
