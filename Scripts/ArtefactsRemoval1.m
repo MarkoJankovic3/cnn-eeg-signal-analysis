@@ -4,7 +4,8 @@ raw_caffeine_318 = '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/
 raw_caffeine_366 = '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_366';
 
 % Get a combined list of .mat files from both folders
-matFiles = [dir(fullfile(raw_caffeine_318, '*.mat')); dir(fullfile(raw_caffeine_366, '*.mat'))];
+matFiles = [dir(fullfile(raw_caffeine_318, '*.mat'))];
+valMatFiles = [dir(fullfile(raw_caffeine_366, '*.mat'))];
 
 % Initialize cell arrays
 XTrain = {};
@@ -19,6 +20,17 @@ for i = 1:length(matFiles)
     TTrain{end+1} = categorical(EEG.artefacts);
 end
 
+valXTrain = {};
+valTTrain = {};
+
+for i = 1:length(valMatFiles)
+    filePath = fullfile(matFiles(i).folder, matFiles(i).name);
+    loadedData = load(filePath);
+    EEG = loadedData.EEG;
+    valXTrain{end+1} = EEG.data;
+    valTTrain{end+1} = categorical(EEG.artefacts);
+end
+
 %% NN model
 numFeatures = size(XTrain{1},1)
 
@@ -28,7 +40,7 @@ numClasses = numel(classes)
 numFilters = 64;
 filterSize = 5;
 dropoutFactor = 0.005;
-numBlocks = 4;
+numBlocks = 3;
 
 layer = sequenceInputLayer(numFeatures,Normalization="rescale-symmetric",Name="input");
 lgraph = layerGraph(layer);
@@ -81,6 +93,8 @@ lgraph = connectLayers(lgraph,outputName,"fc");
 options = trainingOptions("adam", ...
     MaxEpochs=60, ...
     miniBatchSize=1, ...
+    ValidationData={valXTrain,valTTrain}, ...
+    ValidationFrequency=5, ...
     Plots="training-progress", ...
     Verbose=1);
 

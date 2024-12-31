@@ -2,7 +2,7 @@ clear all;
 
 % Load the data
 EEG1 = load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/EEG data/raw-caffeine_311/EEG_RecordSession_311_oddball_pred_kofeinom2019.07.24_12.13.23.hdf5_.mat');
-EEG2 = load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/Predicted EEG data/raw-caffeine_311/Predicted_RecordSession_311_oddball_pred_kofeinom2019.07.24_12.13.23.hdf5_.mat');
+EEG2 = load('/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/Predicted EEG data/raw-caffeine_311_3/Predicted_RecordSession_311_oddball_pred_kofeinom2019.07.24_12.13.23.hdf5_.mat');
 
 % Find the first rejStart element
 

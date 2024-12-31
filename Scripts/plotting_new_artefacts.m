@@ -59,4 +59,4 @@ eeglab redraw;
 
 %% save the data
 EEG.artefacts=r;
-save(['../Datasets/Predicted EEG data/raw-caffeine_311/Predicted_' filename '_.mat'],"EEG");
+save(['../Datasets/Predicted EEG data/raw-caffeine_311_3/Predicted_' filename '_.mat'],"EEG");
