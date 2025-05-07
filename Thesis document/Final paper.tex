@@ -43,7 +43,7 @@ Zaklju\v cna naloga\\
 
 \begin{flushleft}
 \vspace{5cm}
-\noindent Ime in priimek: Marko Jankovic
+\noindent Ime in priimek: Marko Janković
 % add your first name and last name in the line above
 \\
 \noindent \v Studijski program: (name of the study program, in Slovene)
@@ -75,7 +75,7 @@ Zaklju\v cna naloga\\
 \fbox{\parbox{\linewidth}{
 \vspace{0.2cm}
 \noindent
-Ime in PRIIMEK: Marko Jankovic \vspace{0.5cm}\\
+Ime in PRIIMEK: Marko Janković \vspace{0.5cm}\\
 Naslov zaklju\v cne naloge:\vspace{0.5cm}\\
 Kraj: Koper\vspace{0.5cm}\\
 Leto: 2025 \vspace{0.5cm}\\
@@ -84,7 +84,6 @@ Leto: 2025 \vspace{0.5cm}\\
 Mentor:\vspace{0.5cm}\\
 Somentor:\vspace{0.5cm}\\
 Klju\v cne besede:\vspace{0.5cm}\\
-Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
 {\bf Izvle\v cek:}\\
 Izvle\v cek predstavlja kratek, a jedrnat prikaz vsebine naloge. V najve\v c 250 besedah nakažemo problem, metode, rezultate, klju\v cne ugotovitve in njihov pomen.
 \vspace{0.2cm}
@@ -101,7 +100,7 @@ Izvle\v cek predstavlja kratek, a jedrnat prikaz vsebine naloge. V najve\v c 250
 \fbox{\parbox{\linewidth}{
 \vspace{0.2cm}
 \noindent
-Name and SURNAME: Marko Jankovic\vspace{0.5cm}\\
+Name and SURNAME: Marko Janković\vspace{0.5cm}\\
 Title of final project paper: Convolutional neural network for eyeblink artifact detection in EEG data\vspace{0.5cm}\\
 Place: Koper \vspace{0.5cm}\\
 Year: 2025\vspace{0.5cm}\\
@@ -114,7 +113,6 @@ Mentor: title~First Name~Last Name, PhD\vspace{0.5cm}\\
 % Prof.~(if the title is "profesor")
 Co-Mentor:\vspace{0.5cm}\\
 Keywords:\vspace{0.5cm}\\
-Math.~Subj.~Class.~(2010):\vspace{0.5cm}\\
 {\bf Abstract:}
 \vspace{0.2cm}
 }}
@@ -192,6 +190,8 @@ The aim is to design a model to detect signals in EEG recordings and with that p
 \chapter{Background and context}
 \thispagestyle{fancy}
 
+In this section we lay the ground work for the thesis by explaining some of the core components that will be used in proving our thesis.
+
 \section{Electroencephalography (EEG)}
 
 Electroencephalography (EEG) is the measurement of the electric potentials on the scalp surface generated (in part) by neural activity originating from the brain. 
@@ -231,29 +231,6 @@ After ICA decomposition, each row of the transformed data matrix represents the 
 The outputs of ICA procedure are statistically independent component (IC) waveforms, as well as matrix that transforms EEG data to IC data, and its inverse matrix to transform IC data back to EEG data. 
 These outputs provide information about an IC’s temporal and spatial properties. Concerning that ICA assumes an instantaneous relationship (e.g., common volume conduction) and that any relationship between EEG and EMG signals should involve propagation delays, it is recommended to only select EEG channels for ICA decomposition.\cite{makkar2023}
 
-\subsection{ICA label based artifact removal}
-
-The EEG data recorded from scalp electrodes can be considered summations of real EEG signals and artifacts, which are independent of each other. ICA is therefore potentially a useful methodology to separate artifacts from EEG signals. To removal artifacts embedded in EEG recordings, the computed ICs are ﬁrstly classiﬁed as either artefactual or neural related components. If detected and ﬂagged as artifact-related ICs, they can be subtracted from the recorded data, and the remaining data can be remixed. In the artifact correction, ICA is used to separate components in order to identify artifacts relevant with eye movements or heartbeats. 
-These relevant ICs have characteristic shapes (topographies, time courses, and frequency spectra) and can often be identiﬁed automatically. 
-That is, artifact-relevant components generally can be identiﬁed according to the topographies, across-trial temporal distributions, and frequency distributions of the components. 
-
-Abnormal topographies can be appeared as (1) power concentrated only in the frontal lobe in topography (ocular artifacts); (2) discontinued topography (noise artifacts); and (3) topography constrained within single electrode (electrode artifacts). 
-Abnormal across-trial temporal distributions can be appeared as (1) inconsistent between epochs (without obvious peaks in average waveforms); (2) periodic waveform (power line interference); and (3) noisy pattern (similar to Gaussian noise). 
-In addition, the frequency of artifact relevant components is in higher-frequency band (e.g., \textgreater 30 Hz), while the frequency content of neural signals is in lower-frequency band (e.g., 5–20 Hz). 
-Particularly, for components relevant with blink artifacts (as shown in Fig. \ref{fig:ICA}), they have an anterior distribution, and their time courses are largely ﬂat with occasional very high-amplitude spikes indicating artifacts of the eye muscles as they close and open.
-
-\begin{figure}[h]
-     \centering
-     \includegraphics[scale=0.5]{./Chapter3_Methodology/Eye-blink via ICA label.png}
-     \caption{Examples of components relevant with ocular artifacts.}
-     \label{fig:ICA}
-\end{figure}
-
-Particularly, the application of ICA seems to be particularly useful in removing blinks and other oculomotor artifacts. Using ICA to correct artifacts is generally considered the best, since it does not assume orthogonal or gaussian behavior of the individual signals. 
-In contrast, PCA (principal component analysis) assumes that all signals are orthogonal and creates a succession of orthogonal base vectors, where each vector will account for as much variance as possible. 
-As a result, the ﬁrst vector from PCA is signiﬁcantly larger in magnitude than all the subsequent vectors. 
-When the signal to noise ratio is low, important information in these subsequent vectors can get lost.\cite{makkar2023}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 3: Methodology %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -262,9 +239,11 @@ When the signal to noise ratio is low, important information in these subsequent
 
 In this section, the proposed methodology is described stepwise. First, a description of the data is given, and then the data pre-processing is explained, followed by the architecture of the model.
 
-\section{Datasets}
+\section{Dataset}
 
-\subsection{Datasets description}
+We used dataset from ... (have to find the exact article). https://www.cell.com/heliyon/fulltext/S2405-8440(24)17502-0
+
+\subsection{Dataset description}
 
 This dataset examines the effects of caffeine on brain stimulation and consists of EEG recordings of two categories of participants: the first group which had an intake of regular coffee, and the other which had decaffeinated coffee. 
 The primary difference between the two types of participants was the drinks and hence caffeine content. 
@@ -279,7 +258,6 @@ Therefore, it is very essential to apply preprocessing and denoising to the reco
 Generally, preprocessing steps include the transformations or reorganizations of the recorded EEG data by removing bad or artifact-ridden data without changing clean data (transformation) and segmenting continuous raw signals without change of the data (reorganizations).
 
 Our preprocessing of the data comes in 6 steps:
-
 \begin{enumerate}
     \item Filter 1 to 50Hz:
     
@@ -308,13 +286,66 @@ Our preprocessing of the data comes in 6 steps:
 
     This function checks the integrity of the EEG dataset after the preprocessing steps to ensure there are no inconsistencies or issues.
 
-    \item Run ICA
-
-    In this step, Independent Component Analysis (ICA) is applied to separate independent sources (e.g., eye blinks, muscle noise, and brain activity) in the EEG signals. This helps in identifying and later removing artifacts, which is a common step after the basic preprocessing (filtering, re-referencing, etc.) has been completed.
-
 \end{enumerate}
 
+\section{ICA label based artifact removal}
+
+The EEG data recorded from scalp electrodes can be considered summations of real EEG signals and artifacts, which are independent of each other. ICA is therefore potentially a useful methodology to separate artifacts from EEG signals. To removal artifacts embedded in EEG recordings, the computed ICs are ﬁrstly classiﬁed as either artefactual or neural related components. If detected and ﬂagged as artifact-related ICs, they can be subtracted from the recorded data, and the remaining data can be remixed. In the artifact correction, ICA is used to separate components in order to identify artifacts relevant with eye movements or heartbeats. 
+These relevant ICs have characteristic shapes (topographies, time courses, and frequency spectra) and can often be identiﬁed automatically. 
+That is, artifact-relevant components generally can be identiﬁed according to the topographies, across-trial temporal distributions, and frequency distributions of the components. 
+
+Abnormal topographies can be appeared as (1) power concentrated only in the frontal lobe in topography (ocular artifacts); (2) discontinued topography (noise artifacts); and (3) topography constrained within single electrode (electrode artifacts). 
+Abnormal across-trial temporal distributions can be appeared as (1) inconsistent between epochs (without obvious peaks in average waveforms); (2) periodic waveform (power line interference); and (3) noisy pattern (similar to Gaussian noise). 
+In addition, the frequency of artifact relevant components is in higher-frequency band (e.g., \textgreater 30 Hz), while the frequency content of neural signals is in lower-frequency band (e.g., 5–20 Hz). 
+Particularly, for components relevant with blink artifacts (as shown in Fig. \ref{fig:ICA}), they have an anterior distribution, and their time courses are largely ﬂat with occasional very high-amplitude spikes indicating artifacts of the eye muscles as they close and open.
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=1\linewidth]{./Chapter3_Methodology/Eye-blink via ICA label.png}
+     \caption{Examples of components relevant with ocular artifacts.}
+     \label{fig:ICA}
+\end{figure}
+
+Particularly, the application of ICA seems to be particularly useful in removing blinks and other oculomotor artifacts. Using ICA to correct artifacts is generally considered the best, since it does not assume orthogonal or gaussian behavior of the individual signals. 
+In contrast, PCA (principal component analysis) assumes that all signals are orthogonal and creates a succession of orthogonal base vectors, where each vector will account for as much variance as possible. 
+As a result, the ﬁrst vector from PCA is signiﬁcantly larger in magnitude than all the subsequent vectors. 
+When the signal to noise ratio is low, important information in these subsequent vectors can get lost.\cite{makkar2023}
+
 \section{Model selection and description}
+
+For the model, we chose Temporal Convolutional Network (TCN) architecture. While sequence-to-sequence tasks are commonly solved with recurrent neural network architectures, as it was previously shown that convolutional neural networks can match the performance of recurrent networks on typical sequence modeling tasks or even outperform them.
+
+We begin by describing our architecture for convolutional sequence prediction. The main building block of a TCN is a dilated causal convolution layer and is based upon two principles: the fact that the network produces an output of the same length as the input, and the fact that there can be no leakage from the future into the past. To accomplish the first point, the TCN uses a 1D fully-convolutional network (FCN) architecture, where each hidden layer is the same length as the input layer, and zero padding of length (kernel size - 1) is added to keep subsequent layers the same length as previous ones. To achieve the second point, the TCN uses causal convolutions, convolutions where an output at time t is convolved only with elements from time t and earlier in the previous layer. In this context, "causal" means that the activations computed for a particular time step cannot depend on activations from future time steps.
+
+To put it simply: TCN = 1D FCN + causal convolution 
+
+A simple causal convolution is only able to look back at a history with size linear in the depth of the network. This makes it challenging to apply the aforementioned causal convolution on sequence tasks, especially those requiring longer history like in our case.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images/Chapter3_Methodology/dilation factor.png}
+    \caption{A dilated causal convolution with dilation factors d = 1, 2, 4, 8 and filter size k = 2.}
+    \label{fig:dilation-factor}
+\end{figure}
+
+This gives us two ways to increase the receptive field of the TCN: choosing larger filter sizes k and increasing the dilation factor d, where the effective history of one such layer is \((k - 1)d\). As is common when using dilated convolutions, we increase d exponentially with the depth of the network (i.e., \(d = O(2^i)\) at level \(i\) of the network). This ensures that there is some filter that hits each input within the effective history, while also allowing for an extremely large effective history using deep networks.
+
+The general TCN architecture consists of multiple residual blocks, and a residual block contains a branch leading out to a series of transformations \(\mathcal{F}\), whose outputs are added to the input x of the block:
+\begin{equation}
+    o = Activation(x + \mathcal{F}(x))
+    \label{eq:activation}
+\end{equation}
+
+This effectively allows layers to learn modifications to the identity mapping rather than the entire transformation, which has repeatedly been shown to benefit very deep networks.
+
+The residual block for our TCN is shown in Figure \ref{fig:residual-block}, where each of the residual blocks, contains two sets of dilated causal convolution layers with the same dilation factor, followed by normalization, ReLU activation, and spatial dropout layers. The network adds the input of each block to the output of the block (including a 1-by-1 convolution on the input when the number of channels between the input and output do not match) and applies a final activation function. As our number of channels in input and output are the same and always match, the network does not need to apply 1-by-1 convolution to make them match.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/Chapter3_Methodology/residual block.png}
+    \caption{TCN residual block. An 1-by-1 convolution is added when residual input and output have different dimensions.}
+    \label{fig:residual-block}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 4: Results %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -326,41 +357,36 @@ We will examine the results of our thorough testing process. The outcomes of our
 
 \section{Results of training}
 
-The training process was done on two datasets, with an already established model architecture without any modifications to its structure or hyperparameters. The focus of this training was replicating the performance suggested in previous studies, and using it to prove our hypothesis. 
-As a result, no validation dataset was included in the training phase, and the choice was made based on lack of changes to the model that would require additional validation. \\
+The training process was done on two datasets, with an already established model architecture without any modifications to its structure or hyperparameters. The focus of this training was replicating the performance suggested in previous studies, and using it to prove our hypothesis. As a result, no validation dataset was included in the training phase, and the choice was made based on lack of changes to the model that would require additional validation.
+
+\begin{figure}
+     \includegraphics[width=1\linewidth]{./new_training/training_chart_new.png}
+     \caption{Results of training}
+     \label{fig:training}
+\end{figure}
 
 In Fig. \ref{fig:training} we display the accuracy and loss training measures. 
 Within the first few epochs, the model achieves nearly perfect training accuracy, indicating rapid convergence of the accuracy curve.
 Also we can see this in the training loss curve, where we observe steep decline during the initial iterations and in the further training it stabilizes at minimal values.
 This demonstrates the model's ability to successfully fit the training data and is consistent with our expectations of it.
 
-\begin{figure}[h]
-     \includegraphics[scale=0.5]{./new_training/training_chart_new.png}
-     \caption{Results of training}
-     \label{fig:training}
-\end{figure}
-
 \section{Results of testing the model}
 
 Here we present the results of testing our model.
 
-     \begin{figure}[h]
-          \begin{subfigure}{0.5\textwidth}
-          \includegraphics[scale=0.5]{./new_training/training_test_data_confusion_chart_new.png}
-          \caption{Confusion matrix}
-          \end{subfigure}
-          \begin{subfigure}{0.5\textwidth}
-          \includegraphics[scale=0.5]{./new_training/test_sequence_predictions_new.png}
-          \caption{Time-series line chart}
-          \end{subfigure}
-     \caption{Results of testing}
-     \end{figure}
+\begin{figure}
+    \begin{subfigure}{0.5\linewidth}
+    \includegraphics[width=1\linewidth]{./new_training/training_test_data_confusion_chart_new.png}
+    \caption{Confusion matrix}
+    \end{subfigure}
+    \begin{subfigure}{0.5\linewidth}
+    \includegraphics[width=1\linewidth]{./new_training/test_sequence_predictions_new.png}
+    \caption{Time-series line chart}
+    \end{subfigure}
+    \caption{Results of testing}
+\end{figure}
 
-\section{Alternative model comparisson}
-
-
-ddddd
-
+\section{Alternative model comparison}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 5: Discussion and conclusion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
