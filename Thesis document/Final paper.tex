@@ -151,9 +151,19 @@ We can also thank the mentor and the co-mentor (if there is one).
 
 \chapter*{List of Abbreviations}
 \thispagestyle{fancyplain}
-\begin{longtable}{@{}p{1cm}@{}p{\dimexpr\textwidth-1cm\relax}@{}}
-\nomenclature{{\it i.e.}}{that is}
-\nomenclature{{\it e.g.}}{for example}
+\begin{longtable}{@{}p{2cm}@{}p{\dimexpr\textwidth-2cm\relax}@{}}
+\nomenclature{{\it EEG}}{ Electroencephalogram}
+\nomenclature{{\it ICA}}{ Independent Component Analysis}
+\nomenclature{{\it CNN}}{ Convolutional Neural Network}
+\nomenclature{{\it fMRI}}{Functional magnetic resonance imaging}
+\nomenclature{{\it NIRS}}{Near-infrared spectroscopy}
+\nomenclature{{\it NLP}}{Natural language processing}
+\nomenclature{{\it RNN}}{Recurrent neural network}
+\nomenclature{{\it LSTM}}{Long short-term memory}
+\nomenclature{{\it GRU}}{Gated recurrent unit}
+\nomenclature{{\it TCN}}{Temporal Convolutional Network}
+\nomenclature{{\it PCA}}{Principal Component Analysis}
+\nomenclature{{\it FCN}}{Fully-convolutional network}
 \end{longtable}
 \newpage
 
@@ -181,9 +191,9 @@ Traditional methods for detecting and removing eye blink artifacts involve manua
 
 \section{Purpose of the thesis}
 
-In recent years CNNs have shown to be very effective in various domains as they can learn hierarchical features from raw data. 
+In recent years Convolutional Neural Networks (CNN) have shown to be very effective in various domains as they can learn hierarchical features from raw data. 
 This thesis proposes a CNN-based approach to detect signals in EEG data automatically, by demonstrating this ability on detection of eye blink artifacts. 
-The aim is to design a model to detect signals in EEG recordings and with that prove that neural networks can be used to enhance EEG recordings and make EEG-based systems perform better.
+The aim is to design a model to detect pretrained events through EEG analysis and with that prove that neural networks can be used to enhance EEG recordings.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 2: Background and context %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -203,12 +213,12 @@ EEG power is typically split up into bands which correspond to different spectra
 \section{Neural Networks}
 
 Convolutional networks have been applied to sequences for decades. They were used prominently for speech recognition in the 80s and 90s. 
-ConvNets were subsequently applied to NLP tasks such as part-of-speech tagging and semantic role labelling. 
+ConvNets were subsequently applied to natural language processing (NLP) tasks such as part-of-speech tagging and semantic role labelling. 
 More recently, convolutional networks were applied to sentence classification and document classification. 
 Recurrent networks are dedicated sequence models that maintain a vector of hidden activations that are propagated through time. 
 This family of architectures has gained tremendous popularity due to prominent applications to language modeling and machine translation. 
 The intuitive appeal of recurrent modeling is that the hidden state can act as a representation of everything that has been seen so far in the sequence. 
-Basic RNN architectures are notoriously difficult to train and more elaborate architectures are commonly used instead, such as the LSTM and the GRU. 
+Basic recurrent neural network (RNN) architectures are notoriously difficult to train and more elaborate architectures are commonly used instead, such as the Long short-term memory (LSTM) and the Gated recurrent unit (GRU). 
 Many other architectural innovations and training techniques for recurrent networks have been introduced and continue to be actively explored.
 Other recent works have aimed to combine aspects of RNN and CNN architectures. This includes the Convolutional LSTM, which replaces the fully-connected layers in an LSTM with convolutional layers to allow for additional structure in the recurrent layers; the Quasi-RNN model that interleaves convolutional layers with simple recurrent layers; and the dilated RNN, which adds dilations to recurrent architectures.\\
 
@@ -221,15 +231,15 @@ The distinguishing characteristics of TCNs are:
      \item the architecture can take a sequence of any length and map it to an output sequence of the same length, just as with an RNN. 
 \end{enumerate}   
 Beyond this, it is emphasized how to build very long effective history sizes (i.e., the ability for the networks to look very far into the past to make a prediction) using a combination of very deep networks (augmented with residual layers) and dilated convolutions. The architecture is informed by recent convolutional architectures for sequential data, but is distinct from all of them and was designed from first principles to combine simplicity, autoregressive prediction, and very long memory. For example, the TCN is much simpler than WaveNet (no skip connections across layers, conditioning, context stacking, or gated activations). 
-Compared to the other language modeling architectures, TCNs do not use gating mechanisms and have much longer memory.\cite{bai2018}
+Compared to the other language modeling architectures, TCNs do not use gating mechanisms and have much longer memory\cite{bai2018}.
 
-\section{ICA label}
+\section{ICA analysis}
 
 ICA was ﬁrstly created for dealing with the cocktail party problem, upon which you attempt to isolate a pertinent conversation from the noise of other conversations in a cocktail party. Applying the ICA to the EEG data involves the decomposition of EEG time series data into a set of components. More speciﬁcally, EEG data are transformed to a collection of simultaneously recorded outputs of spatial ﬁlters applied to the whole multi-channel data, instead of a collection of simultaneously recorded single-channel data records. Thus, ICA is also a source separation technique that attempts to identify independent sources of variance in the EEG data. 
 In the original EEG data collected at single channels, each row of the recording data matrix represents the time course of summed in voltage differences between the respective channel and the references channels. 
 After ICA decomposition, each row of the transformed data matrix represents the time course of the activity of one independent component that is spatially ﬁltered from the channel data. 
 The outputs of ICA procedure are statistically independent component (IC) waveforms, as well as matrix that transforms EEG data to IC data, and its inverse matrix to transform IC data back to EEG data. 
-These outputs provide information about an IC’s temporal and spatial properties. Concerning that ICA assumes an instantaneous relationship (e.g., common volume conduction) and that any relationship between EEG and EMG signals should involve propagation delays, it is recommended to only select EEG channels for ICA decomposition.\cite{makkar2023}
+These outputs provide information about an IC’s temporal and spatial properties. Concerning that ICA assumes an instantaneous relationship (e.g., common volume conduction) and that any relationship between EEG and EMG signals should involve propagation delays, it is recommended to only select EEG channels for ICA decomposition.\cite{makkar2023}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 3: Methodology %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -253,11 +263,11 @@ In relation to our project, this dataset will be used for dealing with artifact 
 
 \subsection{Data preprocessing}
 
-While EEG recordings tend to contain noise and artifacts such as eye blinking or movement, EEG signals measured from the scalp do not necessarily accurately represent signals originating from the brain. 
+Although EEG recordings tend to contain noise and artifacts, such as blinking or movement of the eyes, EEG signals measured from the scalp do not necessarily accurately represent signals originating from the brain. 
 Therefore, it is very essential to apply preprocessing and denoising to the recorded EEG data. 
 Generally, preprocessing steps include the transformations or reorganizations of the recorded EEG data by removing bad or artifact-ridden data without changing clean data (transformation) and segmenting continuous raw signals without change of the data (reorganizations).
 
-Our preprocessing of the data comes in 6 steps:
+Our data preprocessing comes in six steps:
 \begin{enumerate}
     \item Filter 1 to 50Hz:
     
@@ -282,13 +292,9 @@ Our preprocessing of the data comes in 6 steps:
 
     We resample the data from a sampling rate of 600 Hz to 300 Hz. Resampling reduces the data size while retaining enough frequency resolution for EEG analysis.
 
-    \item Check dataset integrity
-
-    This function checks the integrity of the EEG dataset after the preprocessing steps to ensure there are no inconsistencies or issues.
-
 \end{enumerate}
 
-\section{ICA label based artifact removal}
+\section{ICA label based artifact detection}
 
 The EEG data recorded from scalp electrodes can be considered summations of real EEG signals and artifacts, which are independent of each other. ICA is therefore potentially a useful methodology to separate artifacts from EEG signals. To removal artifacts embedded in EEG recordings, the computed ICs are ﬁrstly classiﬁed as either artefactual or neural related components. If detected and ﬂagged as artifact-related ICs, they can be subtracted from the recorded data, and the remaining data can be remixed. In the artifact correction, ICA is used to separate components in order to identify artifacts relevant with eye movements or heartbeats. 
 These relevant ICs have characteristic shapes (topographies, time courses, and frequency spectra) and can often be identiﬁed automatically. 
@@ -307,17 +313,15 @@ Particularly, for components relevant with blink artifacts (as shown in Fig. \re
 \end{figure}
 
 Particularly, the application of ICA seems to be particularly useful in removing blinks and other oculomotor artifacts. Using ICA to correct artifacts is generally considered the best, since it does not assume orthogonal or gaussian behavior of the individual signals. 
-In contrast, PCA (principal component analysis) assumes that all signals are orthogonal and creates a succession of orthogonal base vectors, where each vector will account for as much variance as possible. 
+In contrast, principal component analysis (PCA) assumes that all signals are orthogonal and creates a succession of orthogonal base vectors, where each vector will account for as much variance as possible. 
 As a result, the ﬁrst vector from PCA is signiﬁcantly larger in magnitude than all the subsequent vectors. 
-When the signal to noise ratio is low, important information in these subsequent vectors can get lost.\cite{makkar2023}
+When the signal to noise ratio is low, important information in these subsequent vectors can get lost\cite{makkar2023}.
 
-\section{Model selection and description}
+\section{Artifact detection using a neural network model}
 
 For the model, we chose Temporal Convolutional Network (TCN) architecture. While sequence-to-sequence tasks are commonly solved with recurrent neural network architectures, as it was previously shown that convolutional neural networks can match the performance of recurrent networks on typical sequence modeling tasks or even outperform them.
 
-We begin by describing our architecture for convolutional sequence prediction. The main building block of a TCN is a dilated causal convolution layer and is based upon two principles: the fact that the network produces an output of the same length as the input, and the fact that there can be no leakage from the future into the past. To accomplish the first point, the TCN uses a 1D fully-convolutional network (FCN) architecture, where each hidden layer is the same length as the input layer, and zero padding of length (kernel size - 1) is added to keep subsequent layers the same length as previous ones. To achieve the second point, the TCN uses causal convolutions, convolutions where an output at time t is convolved only with elements from time t and earlier in the previous layer. In this context, "causal" means that the activations computed for a particular time step cannot depend on activations from future time steps.
-
-To put it simply: TCN = 1D FCN + causal convolution 
+We begin by describing our architecture for convolutional sequence prediction. The main building block of a TCN is a dilated causal convolution layer and it is based upon two principles: the fact that the network produces an output of the same length as the input, and the fact that there can be no leakage from the future into the past. To accomplish the first point, the TCN uses a 1D fully-convolutional network (FCN) architecture, where each hidden layer is the same length as the input layer, and zero padding of length (kernel size - 1) is added to keep subsequent layers the same length as previous ones. To achieve the second point, the TCN uses causal convolutions, convolutions where an output at time \(t\) is convolved only with elements from time \(t\) and earlier in the previous layer. In this context, "causal" means that the activations computed for a particular time step cannot depend on activations from future time steps.
 
 A simple causal convolution is only able to look back at a history with size linear in the depth of the network. This makes it challenging to apply the aforementioned causal convolution on sequence tasks, especially those requiring longer history like in our case.
 
@@ -328,13 +332,14 @@ A simple causal convolution is only able to look back at a history with size lin
     \label{fig:dilation-factor}
 \end{figure}
 
-This gives us two ways to increase the receptive field of the TCN: choosing larger filter sizes k and increasing the dilation factor d, where the effective history of one such layer is \((k - 1)d\). As is common when using dilated convolutions, we increase d exponentially with the depth of the network (i.e., \(d = O(2^i)\) at level \(i\) of the network). This ensures that there is some filter that hits each input within the effective history, while also allowing for an extremely large effective history using deep networks.
+This gives us two ways to increase the receptive field of the TCN: choosing larger filter sizes \(k\) and increasing the dilation factor \(d\), where the effective history of one such layer is \((k - 1)d\). As is common when using dilated convolutions, we increase \(d\) exponentially with the depth of the network (i.e., \(d = O(2^i)\) at level \(i\) of the network). This ensures that there is some filter that hits each input within the effective history, while also allowing for an extremely large effective history using deep networks.
 
-The general TCN architecture consists of multiple residual blocks, and a residual block contains a branch leading out to a series of transformations \(\mathcal{F}\), whose outputs are added to the input x of the block:
+Our TCN model consists of multiple residual blocks, and a residual block contains a branch leading out to a series of transformations \(\mathcal{F}\), whose outputs are added to the input x of the block:
 \begin{equation}
     o = Activation(x + \mathcal{F}(x))
     \label{eq:activation}
 \end{equation}
+where \(o\) is the output of the residual block and \(x\) is the input to the residual block.
 
 This effectively allows layers to learn modifications to the identity mapping rather than the entire transformation, which has repeatedly been shown to benefit very deep networks.
 
