@@ -3,7 +3,7 @@ clc;clear all;close all;
 eeglab;
 %% 1.Import .hdf5
 filename='RecordSession_311_oddball_pred_kofeinom2019.07.24_12.13.23.hdf5';
-filepath= '/home/support-5/Documents/Diplomski/cnn-eeg-signal-analysis/Datasets/Raw data/raw-caffeine_311';
+filepath= '/home/marko/Documents/Diploma/cnn-eeg-signal-analysis/Datasets/Raw data/raw-caffeine_311';
 
 %filename='RecordSession_311_ECO_po_kofeinu2019.07.24_12.54.43.hdf5';
 %filepath= '/home/peter/Projects/EEG/raw-caffeine';
