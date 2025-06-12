@@ -83,10 +83,7 @@ Leto: 2025 \vspace{0.5cm}\\
 Mentor: izr. prof. dr. Peter Rogelj\vspace{0.5cm}\\
 Klju\v cne besede: EEG, Zaznava artefaktov, Časovna konvolucijska mreža (TCN), Globoko učenje, Obdelava možganskih signalov\vspace{0.5cm}\\
 {\bf Izvle\v cek:}\\
-Elektroencefalografski (EEG) posnetki so ključni za analizo možganske aktivnosti, vendar so pogosto moteni zaradi artefaktov, kot so mežikanja. Tradicionalne metode odstranjevanja artefaktov, kot je neodvisna komponentna analiza (ICA), so učinkovite, a računsko zahtevne in neprimerne za uporabo v realnem času. Cilj diplomske naloge je z uporabo globokega učenja razviti model za zaznavo mežikanj v EEG z uporabo Temporal Convolutional Network (TCN).
-Uporabljen je bil javno dostopen EEG nabor podatkov, prvotno zbran za raziskovanje učinkov kofeina. Analiza se osredotoča zgolj na zaznavo artefaktov. Podatki so bili predhodno obdelani, ICA pa je služila kot osnova za označevanje učnih podatkov. Predlagani TCN model vsebuje več ostankovnih blokov in uporablja razredčene vzročne konvolucije za zajem dolgoročnih povezav v EEG signalih.
-Rezultati kažejo visoko natančnost (98,28\%) in več kot 90\% uspešnost zaznave artefaktov, pogosto primerljivo ali boljše od ICA. Model sicer prekomerno segmentira artefakte, kar vodi do zmernega števila napačnih pozitivnih zaznav. Primerjava z enostavnejšimi TCN arhitekturami potrdi pomembnost večje kompleksnosti za boljšo učinkovitost.
-Študija dokazuje, da lahko modeli, kot je TCN, učinkovito nadomestijo ICA pri zaznavanju artefaktov v EEG posnetkih. Pristop omogoča avtomatizirano, neodvisno od posameznikov in razširljivo zaznavo motenj, kar je pomembno za nadaljnje raziskave v nevroznanosti in vmesnikih človek–računalnik.
+Elektroencefalografski (EEG) posnetki so ključni za analizo možganske aktivnosti, vendar so pogosto moteni zaradi artefaktov, med katerimi so najbolj značilni artefakti, ki so posledica mežikanja. Tradicionalne metode odstranjevanja artefaktov, kot je z analizo neodvisnih komponent (ICA), so učinkovite, a računsko zahtevne in neprimerne za uporabo v realnem času. Cilj diplomske naloge je z uporabo globokega učenja razviti model za zaznavo mežikanj v EEG posnetkih z uporabo časovnih konvolucijskih nevronskih mrež (ang. Temporal Convolutional Network - TCN). V raziskavi je bil uporabljen nabor EEG podatkov, prvotno zbran za raziskovanje učinkov kofeina. Analiza se osredotoča zgolj na zaznavo artefaktov. Podatki so bili predhodno obdelani, ICA pa je služila kot osnova za označevanje učnih podatkov. Predlagani TCN model sestoji iz zaporedja več konvolucijskih blokov na različnih stopnjah podvzorčenja signalov, za upoštevanje dolgoročnih časovnih odvisnosti. Rezultati kažejo visoko točnost (98,28\%) in več kot 90\% uspešnost zaznave artefaktov, primerljivo z ICA. Model sicer prekomerno zaznava artefakte, kar vodi do zmernega števila napačnih pozitivnih zaznav. Primerjava z enostavnejšimi TCN arhitekturami potrjuje prednosti večje kompleksnosti z vidika točnosti. Študija dokazuje, da lahko modeli, kot je TCN, učinkovito nadomestijo ICA pri zaznavanju artefaktov v EEG posnetkih. Pristop omogoča avtomatizirano, neodvisno od posameznikov in razširljivo zaznavo motenj, kar je pomembno za nadaljnje raziskave v nevroznanosti in vmesnikih človek–računalnik.
 \vspace{0.2cm}
 }}
 \end{center}
@@ -111,8 +108,8 @@ Mentor: Assoc. Prof. Peter Rogelj, PhD\vspace{0.5cm}\\
 Keywords: EEG, Artifact Detection, Temporal Convolutional Network (TCN), Deep Learning, Neural Signal Processing\vspace{0.5cm}\\
 {\bf Abstract:}\\
 Electroencephalogram (EEG) recordings are widely used to analyze brain activity, but their reliability is often hindered by artifacts such as eye blinks. Traditional artifact removal methods, like Independent Component Analysis (ICA), are effective but computationally demanding and not suited for real-time applications. This thesis explores the use of deep learning to address this issue by developing a Temporal Convolutional Network (TCN) to detect eye-blink artifacts in EEG recordings.
-Using a publicly available EEG dataset originally collected to study the effects of caffeine, this work focuses solely on identifying artifacts regardless of experimental conditions. The data underwent standard preprocessing, and ICA-based labels served as ground truth for supervised training. The proposed TCN model consists of multiple residual blocks and utilizes dilated causal convolutions to capture long-term dependencies in EEG signals.
-The results demonstrate that the model achieves high accuracy (98.28\%) and artifact-level detection rates exceeding 90\%, often matching or outperforming ICA in identifying artifact presence. However, it tends to over-segment artifact boundaries, resulting in a moderate number of false positives. Comparative analysis with simpler TCN configurations confirmed the importance of deeper models for better performance.
+Using an EEG dataset originally collected to study the effects of caffeine, this work focuses solely on identifying artifacts regardless of experimental conditions. The data underwent standard preprocessing, and ICA-based labels served as ground truth for supervised training. The proposed TCN model consists of multiple residual blocks and utilizes dilated causal convolutions to capture long-term dependencies in EEG signals.
+The results demonstrate that the model achieves high accuracy (98.28\%) and artifact-level detection rates exceeding 90\%, closely matching ICA-based artefact detection. However, it tends to over-segment artifact boundaries, resulting in a moderate number of false positives. Comparative analysis with simpler TCN configurations confirmed the importance of deeper models for better performance.
 This study proves that CNN-based models, particularly TCNs, can effectively approximate ICA-like artifact detection in EEG. The approach enables automated, subject-invariant, and scalable detection of unwanted signals in EEG data, paving the way for broader applications in neuroscience and brain-computer interfaces.
 \vspace{0.2cm}
 }}
@@ -128,7 +125,7 @@ This study proves that CNN-based models, particularly TCNs, can effectively appr
 I would like to express my sincere gratitude to all those who supported me throughout the process of writing this thesis.\\
 First and foremost, I am deeply thankful to my family for their endless encouragement, patience, and belief in me during the entire university journey. Their support gave me the strength and motivation to persevere.\\
 I would also like to extend my appreciation to my professor izr. prof. dr Peter Rogelj, valuable feedback, and continuous support which was instrumental in the completion of the thesis and in shaping the direction and quality of this work.\\
-Finally, I express thanks to the researchers behind the caffeine study, whose publicly available EEG dataset provided the foundation for this project.
+Finally, I express thanks to the researchers behind the caffeine study, whose EEG dataset provided the foundation for this project.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Table of contents, list of figures, etc. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -197,7 +194,7 @@ The aim is to design a model to detect pretrained events through EEG analysis an
 \thispagestyle{fancy}
 
 In this section, we lay the groundwork for the thesis by explaining some of the core components that will be used in proving our thesis.
-All EEG data were processed and visualized using EEGlab (Delorme \& Makeig, 2004), an open-source MATLAB toolbox for electrophysiological data analysis.
+All EEG data were preprocessed and visualized using EEGlab (Delorme \& Makeig, 2004), an open-source MATLAB toolbox for electrophysiological data analysis.
 
 \section{Electroencephalography (EEG)}
 
